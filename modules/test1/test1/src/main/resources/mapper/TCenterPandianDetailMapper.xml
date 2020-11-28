@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itbs.persistence.mapper.TCenterPandianDetailMapper">
+  <resultMap id="BaseResultMap" type="com.itbs.persistence.entity.TCenterPandianDetail">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PANDIAN_ID" jdbcType="VARCHAR" property="pandianId" />
+    <result column="PANDIAN_DETAIL_ID" jdbcType="INTEGER" property="pandianDetailId" />
+    <result column="PANDIAN_DETAIL_CODE" jdbcType="VARCHAR" property="pandianDetailCode" />
+    <result column="IS_HL" jdbcType="INTEGER" property="isHl" />
+    <result column="RESOURCE_ID" jdbcType="INTEGER" property="resourceId" />
+    <result column="RESOURCE_CODE" jdbcType="VARCHAR" property="resourceCode" />
+    <result column="LOCATION_CODE" jdbcType="VARCHAR" property="locationCode" />
+    <result column="DATE" jdbcType="TIMESTAMP" property="date" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, PANDIAN_ID, PANDIAN_DETAIL_ID, PANDIAN_DETAIL_CODE, IS_HL, RESOURCE_ID, RESOURCE_CODE, 
+    LOCATION_CODE, DATE
+  </sql>
+  <select id="selectByExample" parameterType="com.itbs.persistence.entity.TCenterPandianDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_center_pandian_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_center_pandian_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_center_pandian_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itbs.persistence.entity.TCenterPandianDetailExample">
+    delete from t_center_pandian_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itbs.persistence.entity.TCenterPandianDetail">
+    insert into t_center_pandian_detail (ID, PANDIAN_ID, PANDIAN_DETAIL_ID, 
+      PANDIAN_DETAIL_CODE, IS_HL, RESOURCE_ID, 
+      RESOURCE_CODE, LOCATION_CODE, DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{pandianId,jdbcType=VARCHAR}, #{pandianDetailId,jdbcType=INTEGER}, 
+      #{pandianDetailCode,jdbcType=VARCHAR}, #{isHl,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER}, 
+      #{resourceCode,jdbcType=VARCHAR}, #{locationCode,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itbs.persistence.entity.TCenterPandianDetail">
+    insert into t_center_pandian_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="pandianId != null">
+        PANDIAN_ID,
+      </if>
+      <if test="pandianDetailId != null">
+        PANDIAN_DETAIL_ID,
+      </if>
+      <if test="pandianDetailCode != null">
+        PANDIAN_DETAIL_CODE,
+      </if>
+      <if test="isHl != null">
+        IS_HL,
+      </if>
+      <if test="resourceId != null">
+        RESOURCE_ID,
+      </if>
+      <if test="resourceCode != null">
+        RESOURCE_CODE,
+      </if>
+      <if test="locationCode != null">
+        LOCATION_CODE,
+      </if>
+      <if test="date != null">
+        DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pandianId != null">
+        #{pandianId,jdbcType=VARCHAR},
+      </if>
+      <if test="pandianDetailId != null">
+        #{pandianDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="pandianDetailCode != null">
+        #{pandianDetailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isHl != null">
+        #{isHl,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceCode != null">
+        #{resourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="locationCode != null">
+        #{locationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itbs.persistence.entity.TCenterPandianDetailExample" resultType="java.lang.Long">
+    select count(*) from t_center_pandian_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_center_pandian_detail
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pandianId != null">
+        PANDIAN_ID = #{record.pandianId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pandianDetailId != null">
+        PANDIAN_DETAIL_ID = #{record.pandianDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pandianDetailCode != null">
+        PANDIAN_DETAIL_CODE = #{record.pandianDetailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isHl != null">
+        IS_HL = #{record.isHl,jdbcType=INTEGER},
+      </if>
+      <if test="record.resourceId != null">
+        RESOURCE_ID = #{record.resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.resourceCode != null">
+        RESOURCE_CODE = #{record.resourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationCode != null">
+        LOCATION_CODE = #{record.locationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null">
+        DATE = #{record.date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_center_pandian_detail
+    set ID = #{record.id,jdbcType=INTEGER},
+      PANDIAN_ID = #{record.pandianId,jdbcType=VARCHAR},
+      PANDIAN_DETAIL_ID = #{record.pandianDetailId,jdbcType=INTEGER},
+      PANDIAN_DETAIL_CODE = #{record.pandianDetailCode,jdbcType=VARCHAR},
+      IS_HL = #{record.isHl,jdbcType=INTEGER},
+      RESOURCE_ID = #{record.resourceId,jdbcType=INTEGER},
+      RESOURCE_CODE = #{record.resourceCode,jdbcType=VARCHAR},
+      LOCATION_CODE = #{record.locationCode,jdbcType=VARCHAR},
+      DATE = #{record.date,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itbs.persistence.entity.TCenterPandianDetail">
+    update t_center_pandian_detail
+    <set>
+      <if test="pandianId != null">
+        PANDIAN_ID = #{pandianId,jdbcType=VARCHAR},
+      </if>
+      <if test="pandianDetailId != null">
+        PANDIAN_DETAIL_ID = #{pandianDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="pandianDetailCode != null">
+        PANDIAN_DETAIL_CODE = #{pandianDetailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isHl != null">
+        IS_HL = #{isHl,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        RESOURCE_ID = #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceCode != null">
+        RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="locationCode != null">
+        LOCATION_CODE = #{locationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        DATE = #{date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itbs.persistence.entity.TCenterPandianDetail">
+    update t_center_pandian_detail
+    set PANDIAN_ID = #{pandianId,jdbcType=VARCHAR},
+      PANDIAN_DETAIL_ID = #{pandianDetailId,jdbcType=INTEGER},
+      PANDIAN_DETAIL_CODE = #{pandianDetailCode,jdbcType=VARCHAR},
+      IS_HL = #{isHl,jdbcType=INTEGER},
+      RESOURCE_ID = #{resourceId,jdbcType=INTEGER},
+      RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR},
+      LOCATION_CODE = #{locationCode,jdbcType=VARCHAR},
+      DATE = #{date,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

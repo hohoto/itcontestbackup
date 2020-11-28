@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itbs.persistence.mapper.TDdApplyMapper">
+  <resultMap id="BaseResultMap" type="com.itbs.persistence.entity.TDdApply">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="APPLY_CODE" jdbcType="VARCHAR" property="applyCode" />
+    <result column="COMPANY_ID" jdbcType="INTEGER" property="companyId" />
+    <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+    <result column="DEPARTMENT_ID" jdbcType="INTEGER" property="departmentId" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="SPU_ID" jdbcType="INTEGER" property="spuId" />
+    <result column="SKU_ID" jdbcType="INTEGER" property="skuId" />
+    <result column="RESOURCE_ID" jdbcType="INTEGER" property="resourceId" />
+    <result column="YONG_TU" jdbcType="VARCHAR" property="yongTu" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="SHEN_PI_COMPANY_ID" jdbcType="INTEGER" property="shenPiCompanyId" />
+    <result column="SHEN_PI_COMPANY_NAME" jdbcType="VARCHAR" property="shenPiCompanyName" />
+    <result column="SHEN_PI_DEPARTMENT_ID" jdbcType="INTEGER" property="shenPiDepartmentId" />
+    <result column="SHEN_PI_DEPARTMENT_NAME" jdbcType="VARCHAR" property="shenPiDepartmentName" />
+    <result column="SHEN_PI_USER_ID" jdbcType="INTEGER" property="shenPiUserId" />
+    <result column="SHEN_PI_USER_NAME" jdbcType="VARCHAR" property="shenPiUserName" />
+    <result column="SHENPI_REASON" jdbcType="VARCHAR" property="shenpiReason" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="SHENPI_DATE" jdbcType="TIMESTAMP" property="shenpiDate" />
+    <result column="APPLY_TYPE" jdbcType="VARCHAR" property="applyType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, APPLY_CODE, COMPANY_ID, COMPANY_NAME, DEPARTMENT_ID, DEPARTMENT_NAME, USER_ID, 
+    USER_NAME, SPU_ID, SKU_ID, RESOURCE_ID, YONG_TU, STATUS, SHEN_PI_COMPANY_ID, SHEN_PI_COMPANY_NAME, 
+    SHEN_PI_DEPARTMENT_ID, SHEN_PI_DEPARTMENT_NAME, SHEN_PI_USER_ID, SHEN_PI_USER_NAME, 
+    SHENPI_REASON, APPLY_DATE, SHENPI_DATE, APPLY_TYPE
+  </sql>
+  <select id="selectByExample" parameterType="com.itbs.persistence.entity.TDdApplyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_dd_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_dd_apply
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_dd_apply
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itbs.persistence.entity.TDdApplyExample">
+    delete from t_dd_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itbs.persistence.entity.TDdApply">
+    insert into t_dd_apply (ID, APPLY_CODE, COMPANY_ID, 
+      COMPANY_NAME, DEPARTMENT_ID, DEPARTMENT_NAME, 
+      USER_ID, USER_NAME, SPU_ID, 
+      SKU_ID, RESOURCE_ID, YONG_TU, 
+      STATUS, SHEN_PI_COMPANY_ID, SHEN_PI_COMPANY_NAME, 
+      SHEN_PI_DEPARTMENT_ID, SHEN_PI_DEPARTMENT_NAME, 
+      SHEN_PI_USER_ID, SHEN_PI_USER_NAME, SHENPI_REASON, 
+      APPLY_DATE, SHENPI_DATE, APPLY_TYPE
+      )
+    values (#{id,jdbcType=INTEGER}, #{applyCode,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{companyName,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, #{departmentName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{spuId,jdbcType=INTEGER}, 
+      #{skuId,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER}, #{yongTu,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{shenPiCompanyId,jdbcType=INTEGER}, #{shenPiCompanyName,jdbcType=VARCHAR}, 
+      #{shenPiDepartmentId,jdbcType=INTEGER}, #{shenPiDepartmentName,jdbcType=VARCHAR}, 
+      #{shenPiUserId,jdbcType=INTEGER}, #{shenPiUserName,jdbcType=VARCHAR}, #{shenpiReason,jdbcType=VARCHAR}, 
+      #{applyDate,jdbcType=TIMESTAMP}, #{shenpiDate,jdbcType=TIMESTAMP}, #{applyType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itbs.persistence.entity.TDdApply">
+    insert into t_dd_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="applyCode != null">
+        APPLY_CODE,
+      </if>
+      <if test="companyId != null">
+        COMPANY_ID,
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="spuId != null">
+        SPU_ID,
+      </if>
+      <if test="skuId != null">
+        SKU_ID,
+      </if>
+      <if test="resourceId != null">
+        RESOURCE_ID,
+      </if>
+      <if test="yongTu != null">
+        YONG_TU,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="shenPiCompanyId != null">
+        SHEN_PI_COMPANY_ID,
+      </if>
+      <if test="shenPiCompanyName != null">
+        SHEN_PI_COMPANY_NAME,
+      </if>
+      <if test="shenPiDepartmentId != null">
+        SHEN_PI_DEPARTMENT_ID,
+      </if>
+      <if test="shenPiDepartmentName != null">
+        SHEN_PI_DEPARTMENT_NAME,
+      </if>
+      <if test="shenPiUserId != null">
+        SHEN_PI_USER_ID,
+      </if>
+      <if test="shenPiUserName != null">
+        SHEN_PI_USER_NAME,
+      </if>
+      <if test="shenpiReason != null">
+        SHENPI_REASON,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+      <if test="shenpiDate != null">
+        SHENPI_DATE,
+      </if>
+      <if test="applyType != null">
+        APPLY_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="applyCode != null">
+        #{applyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="spuId != null">
+        #{spuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null">
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="yongTu != null">
+        #{yongTu,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shenPiCompanyId != null">
+        #{shenPiCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="shenPiCompanyName != null">
+        #{shenPiCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="shenPiDepartmentId != null">
+        #{shenPiDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="shenPiDepartmentName != null">
+        #{shenPiDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="shenPiUserId != null">
+        #{shenPiUserId,jdbcType=INTEGER},
+      </if>
+      <if test="shenPiUserName != null">
+        #{shenPiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="shenpiReason != null">
+        #{shenpiReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenpiDate != null">
+        #{shenpiDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyType != null">
+        #{applyType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itbs.persistence.entity.TDdApplyExample" resultType="java.lang.Long">
+    select count(*) from t_dd_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_dd_apply
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyCode != null">
+        APPLY_CODE = #{record.applyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyName != null">
+        COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentId != null">
+        DEPARTMENT_ID = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.departmentName != null">
+        DEPARTMENT_NAME = #{record.departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spuId != null">
+        SPU_ID = #{record.spuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuId != null">
+        SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.resourceId != null">
+        RESOURCE_ID = #{record.resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.yongTu != null">
+        YONG_TU = #{record.yongTu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.shenPiCompanyId != null">
+        SHEN_PI_COMPANY_ID = #{record.shenPiCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shenPiCompanyName != null">
+        SHEN_PI_COMPANY_NAME = #{record.shenPiCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenPiDepartmentId != null">
+        SHEN_PI_DEPARTMENT_ID = #{record.shenPiDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shenPiDepartmentName != null">
+        SHEN_PI_DEPARTMENT_NAME = #{record.shenPiDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenPiUserId != null">
+        SHEN_PI_USER_ID = #{record.shenPiUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shenPiUserName != null">
+        SHEN_PI_USER_NAME = #{record.shenPiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenpiReason != null">
+        SHENPI_REASON = #{record.shenpiReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyDate != null">
+        APPLY_DATE = #{record.applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shenpiDate != null">
+        SHENPI_DATE = #{record.shenpiDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyType != null">
+        APPLY_TYPE = #{record.applyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_dd_apply
+    set ID = #{record.id,jdbcType=INTEGER},
+      APPLY_CODE = #{record.applyCode,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{record.departmentId,jdbcType=INTEGER},
+      DEPARTMENT_NAME = #{record.departmentName,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=INTEGER},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      SPU_ID = #{record.spuId,jdbcType=INTEGER},
+      SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      RESOURCE_ID = #{record.resourceId,jdbcType=INTEGER},
+      YONG_TU = #{record.yongTu,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      SHEN_PI_COMPANY_ID = #{record.shenPiCompanyId,jdbcType=INTEGER},
+      SHEN_PI_COMPANY_NAME = #{record.shenPiCompanyName,jdbcType=VARCHAR},
+      SHEN_PI_DEPARTMENT_ID = #{record.shenPiDepartmentId,jdbcType=INTEGER},
+      SHEN_PI_DEPARTMENT_NAME = #{record.shenPiDepartmentName,jdbcType=VARCHAR},
+      SHEN_PI_USER_ID = #{record.shenPiUserId,jdbcType=INTEGER},
+      SHEN_PI_USER_NAME = #{record.shenPiUserName,jdbcType=VARCHAR},
+      SHENPI_REASON = #{record.shenpiReason,jdbcType=VARCHAR},
+      APPLY_DATE = #{record.applyDate,jdbcType=TIMESTAMP},
+      SHENPI_DATE = #{record.shenpiDate,jdbcType=TIMESTAMP},
+      APPLY_TYPE = #{record.applyType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itbs.persistence.entity.TDdApply">
+    update t_dd_apply
+    <set>
+      <if test="applyCode != null">
+        APPLY_CODE = #{applyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="spuId != null">
+        SPU_ID = #{spuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null">
+        SKU_ID = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        RESOURCE_ID = #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="yongTu != null">
+        YONG_TU = #{yongTu,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shenPiCompanyId != null">
+        SHEN_PI_COMPANY_ID = #{shenPiCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="shenPiCompanyName != null">
+        SHEN_PI_COMPANY_NAME = #{shenPiCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="shenPiDepartmentId != null">
+        SHEN_PI_DEPARTMENT_ID = #{shenPiDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="shenPiDepartmentName != null">
+        SHEN_PI_DEPARTMENT_NAME = #{shenPiDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="shenPiUserId != null">
+        SHEN_PI_USER_ID = #{shenPiUserId,jdbcType=INTEGER},
+      </if>
+      <if test="shenPiUserName != null">
+        SHEN_PI_USER_NAME = #{shenPiUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="shenpiReason != null">
+        SHENPI_REASON = #{shenpiReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenpiDate != null">
+        SHENPI_DATE = #{shenpiDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyType != null">
+        APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itbs.persistence.entity.TDdApply">
+    update t_dd_apply
+    set APPLY_CODE = #{applyCode,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{departmentId,jdbcType=INTEGER},
+      DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      SPU_ID = #{spuId,jdbcType=INTEGER},
+      SKU_ID = #{skuId,jdbcType=INTEGER},
+      RESOURCE_ID = #{resourceId,jdbcType=INTEGER},
+      YONG_TU = #{yongTu,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      SHEN_PI_COMPANY_ID = #{shenPiCompanyId,jdbcType=INTEGER},
+      SHEN_PI_COMPANY_NAME = #{shenPiCompanyName,jdbcType=VARCHAR},
+      SHEN_PI_DEPARTMENT_ID = #{shenPiDepartmentId,jdbcType=INTEGER},
+      SHEN_PI_DEPARTMENT_NAME = #{shenPiDepartmentName,jdbcType=VARCHAR},
+      SHEN_PI_USER_ID = #{shenPiUserId,jdbcType=INTEGER},
+      SHEN_PI_USER_NAME = #{shenPiUserName,jdbcType=VARCHAR},
+      SHENPI_REASON = #{shenpiReason,jdbcType=VARCHAR},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      SHENPI_DATE = #{shenpiDate,jdbcType=TIMESTAMP},
+      APPLY_TYPE = #{applyType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

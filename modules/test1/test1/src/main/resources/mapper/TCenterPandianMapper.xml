@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itbs.persistence.mapper.TCenterPandianMapper">
+  <resultMap id="BaseResultMap" type="com.itbs.persistence.entity.TCenterPandian">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PANDIAN_CODE" jdbcType="VARCHAR" property="pandianCode" />
+    <result column="PLAN_BEGIN_DATE" jdbcType="TIMESTAMP" property="planBeginDate" />
+    <result column="PLAN_END_DATE" jdbcType="TIMESTAMP" property="planEndDate" />
+    <result column="ACTUAL_BEGIN_DATE" jdbcType="TIMESTAMP" property="actualBeginDate" />
+    <result column="ACTUAL_END_DATE" jdbcType="TIMESTAMP" property="actualEndDate" />
+    <result column="ACCRUALOFDE_PRECIATION" jdbcType="VARCHAR" property="accrualofdePreciation" />
+    <result column="PERSON_COMPANY_ID" jdbcType="INTEGER" property="personCompanyId" />
+    <result column="PERSON_COMPANY_NAME" jdbcType="VARCHAR" property="personCompanyName" />
+    <result column="PERSON_DEPARTMENT_ID" jdbcType="INTEGER" property="personDepartmentId" />
+    <result column="PERSON_DEPARTMENT_NAME" jdbcType="VARCHAR" property="personDepartmentName" />
+    <result column="PERSON_USER_ID" jdbcType="INTEGER" property="personUserId" />
+    <result column="PERSON_USER_NAME" jdbcType="VARCHAR" property="personUserName" />
+    <result column="SPU_ID" jdbcType="INTEGER" property="spuId" />
+    <result column="PLAN_QTY" jdbcType="INTEGER" property="planQty" />
+    <result column="ACTUAL_QTY" jdbcType="INTEGER" property="actualQty" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="LOCATION_CODE" jdbcType="VARCHAR" property="locationCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, PANDIAN_CODE, PLAN_BEGIN_DATE, PLAN_END_DATE, ACTUAL_BEGIN_DATE, ACTUAL_END_DATE, 
+    ACCRUALOFDE_PRECIATION, PERSON_COMPANY_ID, PERSON_COMPANY_NAME, PERSON_DEPARTMENT_ID, 
+    PERSON_DEPARTMENT_NAME, PERSON_USER_ID, PERSON_USER_NAME, SPU_ID, PLAN_QTY, ACTUAL_QTY, 
+    STATUS, LOCATION_CODE
+  </sql>
+  <select id="selectByExample" parameterType="com.itbs.persistence.entity.TCenterPandianExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_center_pandian
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_center_pandian
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_center_pandian
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itbs.persistence.entity.TCenterPandianExample">
+    delete from t_center_pandian
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itbs.persistence.entity.TCenterPandian">
+    insert into t_center_pandian (ID, PANDIAN_CODE, PLAN_BEGIN_DATE, 
+      PLAN_END_DATE, ACTUAL_BEGIN_DATE, ACTUAL_END_DATE, 
+      ACCRUALOFDE_PRECIATION, PERSON_COMPANY_ID, 
+      PERSON_COMPANY_NAME, PERSON_DEPARTMENT_ID, 
+      PERSON_DEPARTMENT_NAME, PERSON_USER_ID, PERSON_USER_NAME, 
+      SPU_ID, PLAN_QTY, ACTUAL_QTY, 
+      STATUS, LOCATION_CODE)
+    values (#{id,jdbcType=INTEGER}, #{pandianCode,jdbcType=VARCHAR}, #{planBeginDate,jdbcType=TIMESTAMP}, 
+      #{planEndDate,jdbcType=TIMESTAMP}, #{actualBeginDate,jdbcType=TIMESTAMP}, #{actualEndDate,jdbcType=TIMESTAMP}, 
+      #{accrualofdePreciation,jdbcType=VARCHAR}, #{personCompanyId,jdbcType=INTEGER}, 
+      #{personCompanyName,jdbcType=VARCHAR}, #{personDepartmentId,jdbcType=INTEGER}, 
+      #{personDepartmentName,jdbcType=VARCHAR}, #{personUserId,jdbcType=INTEGER}, #{personUserName,jdbcType=VARCHAR}, 
+      #{spuId,jdbcType=INTEGER}, #{planQty,jdbcType=INTEGER}, #{actualQty,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{locationCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itbs.persistence.entity.TCenterPandian">
+    insert into t_center_pandian
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="pandianCode != null">
+        PANDIAN_CODE,
+      </if>
+      <if test="planBeginDate != null">
+        PLAN_BEGIN_DATE,
+      </if>
+      <if test="planEndDate != null">
+        PLAN_END_DATE,
+      </if>
+      <if test="actualBeginDate != null">
+        ACTUAL_BEGIN_DATE,
+      </if>
+      <if test="actualEndDate != null">
+        ACTUAL_END_DATE,
+      </if>
+      <if test="accrualofdePreciation != null">
+        ACCRUALOFDE_PRECIATION,
+      </if>
+      <if test="personCompanyId != null">
+        PERSON_COMPANY_ID,
+      </if>
+      <if test="personCompanyName != null">
+        PERSON_COMPANY_NAME,
+      </if>
+      <if test="personDepartmentId != null">
+        PERSON_DEPARTMENT_ID,
+      </if>
+      <if test="personDepartmentName != null">
+        PERSON_DEPARTMENT_NAME,
+      </if>
+      <if test="personUserId != null">
+        PERSON_USER_ID,
+      </if>
+      <if test="personUserName != null">
+        PERSON_USER_NAME,
+      </if>
+      <if test="spuId != null">
+        SPU_ID,
+      </if>
+      <if test="planQty != null">
+        PLAN_QTY,
+      </if>
+      <if test="actualQty != null">
+        ACTUAL_QTY,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="locationCode != null">
+        LOCATION_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pandianCode != null">
+        #{pandianCode,jdbcType=VARCHAR},
+      </if>
+      <if test="planBeginDate != null">
+        #{planBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null">
+        #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualBeginDate != null">
+        #{actualBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualEndDate != null">
+        #{actualEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accrualofdePreciation != null">
+        #{accrualofdePreciation,jdbcType=VARCHAR},
+      </if>
+      <if test="personCompanyId != null">
+        #{personCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="personCompanyName != null">
+        #{personCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="personDepartmentId != null">
+        #{personDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="personDepartmentName != null">
+        #{personDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="personUserId != null">
+        #{personUserId,jdbcType=INTEGER},
+      </if>
+      <if test="personUserName != null">
+        #{personUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="spuId != null">
+        #{spuId,jdbcType=INTEGER},
+      </if>
+      <if test="planQty != null">
+        #{planQty,jdbcType=INTEGER},
+      </if>
+      <if test="actualQty != null">
+        #{actualQty,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="locationCode != null">
+        #{locationCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itbs.persistence.entity.TCenterPandianExample" resultType="java.lang.Long">
+    select count(*) from t_center_pandian
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_center_pandian
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pandianCode != null">
+        PANDIAN_CODE = #{record.pandianCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planBeginDate != null">
+        PLAN_BEGIN_DATE = #{record.planBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.planEndDate != null">
+        PLAN_END_DATE = #{record.planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.actualBeginDate != null">
+        ACTUAL_BEGIN_DATE = #{record.actualBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.actualEndDate != null">
+        ACTUAL_END_DATE = #{record.actualEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accrualofdePreciation != null">
+        ACCRUALOFDE_PRECIATION = #{record.accrualofdePreciation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personCompanyId != null">
+        PERSON_COMPANY_ID = #{record.personCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.personCompanyName != null">
+        PERSON_COMPANY_NAME = #{record.personCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personDepartmentId != null">
+        PERSON_DEPARTMENT_ID = #{record.personDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.personDepartmentName != null">
+        PERSON_DEPARTMENT_NAME = #{record.personDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personUserId != null">
+        PERSON_USER_ID = #{record.personUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.personUserName != null">
+        PERSON_USER_NAME = #{record.personUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spuId != null">
+        SPU_ID = #{record.spuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.planQty != null">
+        PLAN_QTY = #{record.planQty,jdbcType=INTEGER},
+      </if>
+      <if test="record.actualQty != null">
+        ACTUAL_QTY = #{record.actualQty,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.locationCode != null">
+        LOCATION_CODE = #{record.locationCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_center_pandian
+    set ID = #{record.id,jdbcType=INTEGER},
+      PANDIAN_CODE = #{record.pandianCode,jdbcType=VARCHAR},
+      PLAN_BEGIN_DATE = #{record.planBeginDate,jdbcType=TIMESTAMP},
+      PLAN_END_DATE = #{record.planEndDate,jdbcType=TIMESTAMP},
+      ACTUAL_BEGIN_DATE = #{record.actualBeginDate,jdbcType=TIMESTAMP},
+      ACTUAL_END_DATE = #{record.actualEndDate,jdbcType=TIMESTAMP},
+      ACCRUALOFDE_PRECIATION = #{record.accrualofdePreciation,jdbcType=VARCHAR},
+      PERSON_COMPANY_ID = #{record.personCompanyId,jdbcType=INTEGER},
+      PERSON_COMPANY_NAME = #{record.personCompanyName,jdbcType=VARCHAR},
+      PERSON_DEPARTMENT_ID = #{record.personDepartmentId,jdbcType=INTEGER},
+      PERSON_DEPARTMENT_NAME = #{record.personDepartmentName,jdbcType=VARCHAR},
+      PERSON_USER_ID = #{record.personUserId,jdbcType=INTEGER},
+      PERSON_USER_NAME = #{record.personUserName,jdbcType=VARCHAR},
+      SPU_ID = #{record.spuId,jdbcType=INTEGER},
+      PLAN_QTY = #{record.planQty,jdbcType=INTEGER},
+      ACTUAL_QTY = #{record.actualQty,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      LOCATION_CODE = #{record.locationCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itbs.persistence.entity.TCenterPandian">
+    update t_center_pandian
+    <set>
+      <if test="pandianCode != null">
+        PANDIAN_CODE = #{pandianCode,jdbcType=VARCHAR},
+      </if>
+      <if test="planBeginDate != null">
+        PLAN_BEGIN_DATE = #{planBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null">
+        PLAN_END_DATE = #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualBeginDate != null">
+        ACTUAL_BEGIN_DATE = #{actualBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualEndDate != null">
+        ACTUAL_END_DATE = #{actualEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accrualofdePreciation != null">
+        ACCRUALOFDE_PRECIATION = #{accrualofdePreciation,jdbcType=VARCHAR},
+      </if>
+      <if test="personCompanyId != null">
+        PERSON_COMPANY_ID = #{personCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="personCompanyName != null">
+        PERSON_COMPANY_NAME = #{personCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="personDepartmentId != null">
+        PERSON_DEPARTMENT_ID = #{personDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="personDepartmentName != null">
+        PERSON_DEPARTMENT_NAME = #{personDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="personUserId != null">
+        PERSON_USER_ID = #{personUserId,jdbcType=INTEGER},
+      </if>
+      <if test="personUserName != null">
+        PERSON_USER_NAME = #{personUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="spuId != null">
+        SPU_ID = #{spuId,jdbcType=INTEGER},
+      </if>
+      <if test="planQty != null">
+        PLAN_QTY = #{planQty,jdbcType=INTEGER},
+      </if>
+      <if test="actualQty != null">
+        ACTUAL_QTY = #{actualQty,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="locationCode != null">
+        LOCATION_CODE = #{locationCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itbs.persistence.entity.TCenterPandian">
+    update t_center_pandian
+    set PANDIAN_CODE = #{pandianCode,jdbcType=VARCHAR},
+      PLAN_BEGIN_DATE = #{planBeginDate,jdbcType=TIMESTAMP},
+      PLAN_END_DATE = #{planEndDate,jdbcType=TIMESTAMP},
+      ACTUAL_BEGIN_DATE = #{actualBeginDate,jdbcType=TIMESTAMP},
+      ACTUAL_END_DATE = #{actualEndDate,jdbcType=TIMESTAMP},
+      ACCRUALOFDE_PRECIATION = #{accrualofdePreciation,jdbcType=VARCHAR},
+      PERSON_COMPANY_ID = #{personCompanyId,jdbcType=INTEGER},
+      PERSON_COMPANY_NAME = #{personCompanyName,jdbcType=VARCHAR},
+      PERSON_DEPARTMENT_ID = #{personDepartmentId,jdbcType=INTEGER},
+      PERSON_DEPARTMENT_NAME = #{personDepartmentName,jdbcType=VARCHAR},
+      PERSON_USER_ID = #{personUserId,jdbcType=INTEGER},
+      PERSON_USER_NAME = #{personUserName,jdbcType=VARCHAR},
+      SPU_ID = #{spuId,jdbcType=INTEGER},
+      PLAN_QTY = #{planQty,jdbcType=INTEGER},
+      ACTUAL_QTY = #{actualQty,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      LOCATION_CODE = #{locationCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
