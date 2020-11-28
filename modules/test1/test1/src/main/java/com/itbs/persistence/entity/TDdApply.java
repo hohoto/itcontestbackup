@@ -49,6 +49,8 @@ public class TDdApply {
 
     private String applyType;
 
+    private String responsibilityCenter;
+
     public Integer getId() {
         return id;
     }
@@ -231,5 +233,13 @@ public class TDdApply {
 
     public void setApplyType(String applyType) {
         this.applyType = applyType == null ? null : applyType.trim();
+    }
+
+    public String getResponsibilityCenter() {
+        return responsibilityCenter;
+    }
+
+    public void setResponsibilityCenter(String responsibilityCenter) {
+        this.responsibilityCenter = responsibilityCenter == null ? null : responsibilityCenter.trim();
     }
 }

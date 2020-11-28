@@ -25,6 +25,7 @@
     <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
     <result column="SHENPI_DATE" jdbcType="TIMESTAMP" property="shenpiDate" />
     <result column="APPLY_TYPE" jdbcType="VARCHAR" property="applyType" />
+    <result column="RESPONSIBILITY_CENTER" jdbcType="VARCHAR" property="responsibilityCenter" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -88,7 +89,7 @@
     ID, APPLY_CODE, COMPANY_ID, COMPANY_NAME, DEPARTMENT_ID, DEPARTMENT_NAME, USER_ID, 
     USER_NAME, SPU_ID, SKU_ID, RESOURCE_ID, YONG_TU, STATUS, SHEN_PI_COMPANY_ID, SHEN_PI_COMPANY_NAME, 
     SHEN_PI_DEPARTMENT_ID, SHEN_PI_DEPARTMENT_NAME, SHEN_PI_USER_ID, SHEN_PI_USER_NAME, 
-    SHENPI_REASON, APPLY_DATE, SHENPI_DATE, APPLY_TYPE
+    SHENPI_REASON, APPLY_DATE, SHENPI_DATE, APPLY_TYPE, RESPONSIBILITY_CENTER
   </sql>
   <select id="selectByExample" parameterType="com.itbs.persistence.entity.TDdApplyExample" resultMap="BaseResultMap">
     select
@@ -129,8 +130,8 @@
       STATUS, SHEN_PI_COMPANY_ID, SHEN_PI_COMPANY_NAME, 
       SHEN_PI_DEPARTMENT_ID, SHEN_PI_DEPARTMENT_NAME, 
       SHEN_PI_USER_ID, SHEN_PI_USER_NAME, SHENPI_REASON, 
-      APPLY_DATE, SHENPI_DATE, APPLY_TYPE
-      )
+      APPLY_DATE, SHENPI_DATE, APPLY_TYPE, 
+      RESPONSIBILITY_CENTER)
     values (#{id,jdbcType=INTEGER}, #{applyCode,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
       #{companyName,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, #{departmentName,jdbcType=VARCHAR}, 
       #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{spuId,jdbcType=INTEGER}, 
@@ -138,8 +139,8 @@
       #{status,jdbcType=INTEGER}, #{shenPiCompanyId,jdbcType=INTEGER}, #{shenPiCompanyName,jdbcType=VARCHAR}, 
       #{shenPiDepartmentId,jdbcType=INTEGER}, #{shenPiDepartmentName,jdbcType=VARCHAR}, 
       #{shenPiUserId,jdbcType=INTEGER}, #{shenPiUserName,jdbcType=VARCHAR}, #{shenpiReason,jdbcType=VARCHAR}, 
-      #{applyDate,jdbcType=TIMESTAMP}, #{shenpiDate,jdbcType=TIMESTAMP}, #{applyType,jdbcType=VARCHAR}
-      )
+      #{applyDate,jdbcType=TIMESTAMP}, #{shenpiDate,jdbcType=TIMESTAMP}, #{applyType,jdbcType=VARCHAR}, 
+      #{responsibilityCenter,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.itbs.persistence.entity.TDdApply">
     insert into t_dd_apply
@@ -213,6 +214,9 @@
       <if test="applyType != null">
         APPLY_TYPE,
       </if>
+      <if test="responsibilityCenter != null">
+        RESPONSIBILITY_CENTER,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -283,6 +287,9 @@
       </if>
       <if test="applyType != null">
         #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibilityCenter != null">
+        #{responsibilityCenter,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -364,6 +371,9 @@
       <if test="record.applyType != null">
         APPLY_TYPE = #{record.applyType,jdbcType=VARCHAR},
       </if>
+      <if test="record.responsibilityCenter != null">
+        RESPONSIBILITY_CENTER = #{record.responsibilityCenter,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -393,7 +403,8 @@
       SHENPI_REASON = #{record.shenpiReason,jdbcType=VARCHAR},
       APPLY_DATE = #{record.applyDate,jdbcType=TIMESTAMP},
       SHENPI_DATE = #{record.shenpiDate,jdbcType=TIMESTAMP},
-      APPLY_TYPE = #{record.applyType,jdbcType=VARCHAR}
+      APPLY_TYPE = #{record.applyType,jdbcType=VARCHAR},
+      RESPONSIBILITY_CENTER = #{record.responsibilityCenter,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -467,6 +478,9 @@
       <if test="applyType != null">
         APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
       </if>
+      <if test="responsibilityCenter != null">
+        RESPONSIBILITY_CENTER = #{responsibilityCenter,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
@@ -493,7 +507,8 @@
       SHENPI_REASON = #{shenpiReason,jdbcType=VARCHAR},
       APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
       SHENPI_DATE = #{shenpiDate,jdbcType=TIMESTAMP},
-      APPLY_TYPE = #{applyType,jdbcType=VARCHAR}
+      APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+      RESPONSIBILITY_CENTER = #{responsibilityCenter,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

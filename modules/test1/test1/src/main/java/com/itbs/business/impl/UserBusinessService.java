@@ -17,6 +17,11 @@ public class UserBusinessService implements UserBusinessServiceI{
     @Autowired
     ItMatchDaoServiceI itMatchDaoServiceI;
 
+    /**
+     * 查询公司
+     * @param companyCode
+     * @return
+     */
     @Override
     public List<TBasicCompany> queryCompany(String companyCode){
         TBasicCompanyExample example = new TBasicCompanyExample();

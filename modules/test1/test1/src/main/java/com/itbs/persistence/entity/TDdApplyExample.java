@@ -1584,6 +1584,76 @@ public class TDdApplyExample {
             addCriterion("APPLY_TYPE not between", value1, value2, "applyType");
             return (Criteria) this;
         }
+
+        public Criteria andResponsibilityCenterIsNull() {
+            addCriterion("RESPONSIBILITY_CENTER is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterIsNotNull() {
+            addCriterion("RESPONSIBILITY_CENTER is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterEqualTo(String value) {
+            addCriterion("RESPONSIBILITY_CENTER =", value, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterNotEqualTo(String value) {
+            addCriterion("RESPONSIBILITY_CENTER <>", value, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterGreaterThan(String value) {
+            addCriterion("RESPONSIBILITY_CENTER >", value, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterGreaterThanOrEqualTo(String value) {
+            addCriterion("RESPONSIBILITY_CENTER >=", value, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterLessThan(String value) {
+            addCriterion("RESPONSIBILITY_CENTER <", value, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterLessThanOrEqualTo(String value) {
+            addCriterion("RESPONSIBILITY_CENTER <=", value, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterLike(String value) {
+            addCriterion("RESPONSIBILITY_CENTER like", value, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterNotLike(String value) {
+            addCriterion("RESPONSIBILITY_CENTER not like", value, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterIn(List<String> values) {
+            addCriterion("RESPONSIBILITY_CENTER in", values, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterNotIn(List<String> values) {
+            addCriterion("RESPONSIBILITY_CENTER not in", values, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterBetween(String value1, String value2) {
+            addCriterion("RESPONSIBILITY_CENTER between", value1, value2, "responsibilityCenter");
+            return (Criteria) this;
+        }
+
+        public Criteria andResponsibilityCenterNotBetween(String value1, String value2) {
+            addCriterion("RESPONSIBILITY_CENTER not between", value1, value2, "responsibilityCenter");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -57,5 +57,43 @@ public class Constant {
     }
 
 
+    /**
+     * 责任中心
+     */
+    @Getter
+    @AllArgsConstructor
+    public enum ZeRenZhongXin {
+        DSJY("电商交易事业部",1);
+        private String name;
+        private Integer value;
+    }
+
+
+    /**
+     * 盘点单状态
+     */
+    @Getter
+    @AllArgsConstructor
+    public enum PanDianStatus {
+        DPD("待盘点",10),
+        PDZ("盘点中",20),
+        PDWC("盘点完成",30);
+        private String name;
+        private Integer value;
+    }
+
+    /**
+     * 是否合理
+     */
+    @Getter
+    @AllArgsConstructor
+    public enum BeHl {
+        HL("合理",10),
+        BHL("不合理",20);
+        private String name;
+        private Integer value;
+    }
+
+
 
 }
