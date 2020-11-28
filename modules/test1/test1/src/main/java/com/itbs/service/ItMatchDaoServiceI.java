@@ -16,6 +16,10 @@ public interface ItMatchDaoServiceI {
     int insertTBasicSpu(TBasicSpu param);
     int insertTBasicUser(TBasicUser param);
     int insertTCenterRole(TCenterRole param);
+    int insertTCenterPandian(TCenterPandian param);
+    int insertTCenterPandianDetail(TCenterPandianDetail param);
+    int insertTCenterResource(TCenterResource param);
+    int insertTDdApply(TDdApply param);
     int updateTBasicCompanySelective(TBasicCompany param, TBasicCompanyExample example);
     int updateTBasicCompanyByPrimaryKeySelective(TBasicCompany record);
     int updateTBasicDepartmentSelective(TBasicDepartment param, TBasicDepartmentExample example);
@@ -30,6 +34,14 @@ public interface ItMatchDaoServiceI {
     int updateTBasicUserByPrimaryKeySelective(TBasicUser record);
     int updateTCenterRoleSelective(TCenterRole param, TCenterRoleExample example);
     int updateTCenterRoleByPrimaryKeySelective(TCenterRole record);
+    int updateTCenterPandianSelective(TCenterPandian param, TCenterPandianExample example);
+    int updateTCenterPandianByPrimaryKeySelective(TCenterPandian record);
+    int updateTCenterPandianDetailSelective(TCenterPandianDetail param, TCenterPandianDetailExample example);
+    int updateTCenterPandianDetailByPrimaryKeySelective(TCenterPandianDetail record);
+    int updateTCenterResourceSelective(TCenterResource param, TCenterResourceExample example);
+    int updateTCenterResourceByPrimaryKeySelective(TCenterResource record);
+    int updateTDdApplySelective(TDdApply param, TDdApplyExample example);
+    int updateTDdApplyByPrimaryKeySelective(TDdApply record);
     List<TBasicCompany> selectTBasicCompany(TBasicCompanyExample example);
     TBasicCompany selectTBasicCompanyByPrimaryKey(Integer id);
     List<TBasicDepartment> selectTBasicDepartment(TBasicDepartmentExample example);
@@ -44,6 +56,15 @@ public interface ItMatchDaoServiceI {
     TBasicUser selectTBasicUserByPrimaryKey(Integer id);
     List<TCenterRole> selectTCenterRole(TCenterRoleExample example);
     TCenterRole selectTCenterRoleByPrimaryKey(Integer id);
+    List<TCenterPandian> selectTCenterPandian(TCenterPandianExample example);
+    TCenterPandian selectTCenterPandianByPrimaryKey(Integer id);
+    List<TCenterPandianDetail> selectTCenterPandianDetail(TCenterPandianDetailExample example);
+    TCenterPandianDetail selectTCenterPandianDetailByPrimaryKey(Integer id);
+    List<TCenterResource> selectTCenterResource(TCenterResourceExample example);
+    TCenterResource selectTCenterResourceByPrimaryKey(Integer id);
+    List<TDdApply> selectTDdApply(TDdApplyExample example);
+    TDdApply selectTDdApplyByPrimaryKey(Integer id);
+
 
 
 

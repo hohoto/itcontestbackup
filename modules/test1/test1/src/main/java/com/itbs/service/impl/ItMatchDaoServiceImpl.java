@@ -2,6 +2,7 @@ package com.itbs.service.impl;
 
 import com.itbs.constant.BaseDb;
 import com.itbs.persistence.entity.*;
+import com.itbs.persistence.mapper.TCenterPandianMapper;
 import com.itbs.service.ItMatchDaoServiceI;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +53,25 @@ public class ItMatchDaoServiceImpl extends BaseDb implements ItMatchDaoServiceI{
         return tCenterRoleMapper.insertSelective(param);
     }
 
+    @Override
+    public int insertTCenterPandian(TCenterPandian param){
+        return tCenterPandianMapper.insertSelective(param);
+    }
+
+    @Override
+    public int insertTCenterPandianDetail(TCenterPandianDetail param){
+        return tCenterPandianDetailMapper.insertSelective(param);
+    }
+
+    @Override
+    public int insertTCenterResource(TCenterResource param){
+        return tCenterResourceMapper.insertSelective(param);
+    }
+
+    @Override
+    public int insertTDdApply(TDdApply param){
+        return tDdApplyMapper.insertSelective(param);
+    }
 
     /** standard update */
     @Override
@@ -124,6 +144,45 @@ public class ItMatchDaoServiceImpl extends BaseDb implements ItMatchDaoServiceI{
         return tCenterRoleMapper.updateByPrimaryKeySelective(record);
     }
 
+    @Override
+    public int updateTCenterPandianSelective(TCenterPandian param, TCenterPandianExample example){
+        return tCenterPandianMapper.updateByExampleSelective(param, example);
+    }
+
+    @Override
+    public int updateTCenterPandianByPrimaryKeySelective(TCenterPandian record) {
+        return tCenterPandianMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateTCenterPandianDetailSelective(TCenterPandianDetail param, TCenterPandianDetailExample example){
+        return tCenterPandianDetailMapper.updateByExampleSelective(param, example);
+    }
+
+    @Override
+    public int updateTCenterPandianDetailByPrimaryKeySelective(TCenterPandianDetail record) {
+        return tCenterPandianDetailMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateTCenterResourceSelective(TCenterResource param, TCenterResourceExample example){
+        return tCenterResourceMapper.updateByExampleSelective(param, example);
+    }
+
+    @Override
+    public int updateTCenterResourceByPrimaryKeySelective(TCenterResource record) {
+        return tCenterResourceMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateTDdApplySelective(TDdApply param, TDdApplyExample example){
+        return tDdApplyMapper.updateByExampleSelective(param, example);
+    }
+
+    @Override
+    public int updateTDdApplyByPrimaryKeySelective(TDdApply record) {
+        return tDdApplyMapper.updateByPrimaryKeySelective(record);
+    }
 
     /** standard select */
     @Override
@@ -194,6 +253,54 @@ public class ItMatchDaoServiceImpl extends BaseDb implements ItMatchDaoServiceI{
     @Override
     public TCenterRole selectTCenterRoleByPrimaryKey(Integer id){
         return tCenterRoleMapper.selectByPrimaryKey(id);
+    }
+
+
+    @Override
+    public List<TCenterPandian> selectTCenterPandian(TCenterPandianExample example){
+        return tCenterPandianMapper.selectByExample(example);
+    }
+
+    @Override
+    public TCenterPandian selectTCenterPandianByPrimaryKey(Integer id){
+        return tCenterPandianMapper.selectByPrimaryKey(id);
+    }
+
+
+
+    @Override
+    public List<TCenterPandianDetail> selectTCenterPandianDetail(TCenterPandianDetailExample example){
+        return tCenterPandianDetailMapper.selectByExample(example);
+    }
+
+    @Override
+    public TCenterPandianDetail selectTCenterPandianDetailByPrimaryKey(Integer id){
+        return tCenterPandianDetailMapper.selectByPrimaryKey(id);
+    }
+
+
+
+    @Override
+    public List<TCenterResource> selectTCenterResource(TCenterResourceExample example){
+        return tCenterResourceMapper.selectByExample(example);
+    }
+
+    @Override
+    public TCenterResource selectTCenterResourceByPrimaryKey(Integer id){
+        return tCenterResourceMapper.selectByPrimaryKey(id);
+    }
+
+
+
+
+    @Override
+    public List<TDdApply> selectTDdApply(TDdApplyExample example){
+        return tDdApplyMapper.selectByExample(example);
+    }
+
+    @Override
+    public TDdApply selectTDdApplyByPrimaryKey(Integer id){
+        return tDdApplyMapper.selectByPrimaryKey(id);
     }
 
 

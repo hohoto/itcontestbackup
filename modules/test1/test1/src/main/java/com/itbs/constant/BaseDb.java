@@ -1,6 +1,7 @@
 package com.itbs.constant;
 
 import com.itbs.persistence.mapper.*;
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -29,5 +30,14 @@ public class BaseDb {
     public TCenterRoleMapper tCenterRoleMapper;
 
     @Autowired
-    public ResourcemanageMapper resourcemanageMapper;
+    public TCenterPandianMapper tCenterPandianMapper;
+
+    @Autowired
+    public TCenterPandianDetailMapper tCenterPandianDetailMapper;
+
+    @Autowired
+    public TCenterResourceMapper tCenterResourceMapper;
+
+    @Autowired
+    public TDdApplyMapper tDdApplyMapper;
 }
