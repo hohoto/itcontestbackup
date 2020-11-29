@@ -24,22 +24,9 @@ public class InsertController {
     @Autowired
     private InsertDataServiceImpl insertDataServiceImpl;
 
-    private Resourcemanage resourcemanage;
 
     @RequestMapping(value = "/ruku", method = RequestMethod.POST)
     public Object newruku(@RequestBody JSONObject requestbody){
-        //resourceid
-        //resourcename
-        //resourcetype
-        //resourcestatus
-        resourcemanage = new Resourcemanage();
-        SimpleDateFormat df = new SimpleDateFormat("ddHHmmss");//设置日期格式
-        resourcemanage.setResourceid(df.format(new Date()).toString()+UUID.randomUUID().toString().substring(3,7));// new Date()为获取当前系统时间
-        resourcemanage.setResourcename(requestbody.get("resourceName").toString());
-        resourcemanage.setOrivalue(new BigDecimal(requestbody.get("orivalue").toString()));
-        resourcemanage.setLimityear(Integer.valueOf(requestbody.get("limityear").toString()));
-        resourcemanage.setResourcetype("20");
-        resourcemanage.setResourcestatus("00");
         return insertDataServiceImpl.insertData(resourcemanage);
     }
 
