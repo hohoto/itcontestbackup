@@ -1,33 +1,30 @@
 package com.itbs.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.itbs.business.InStorageBusinessServiceI;
 import com.itbs.entity.TestData;
-import com.itbs.persistence.entity.Resourcemanage;
-import com.itbs.persistence.mapper.InsertDataMapper;
-import com.itbs.service.InsertDataServiceImpl;
+
+import com.itbs.persistence.entity.TCenterResource;
+
 import com.itbs.service.TestDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
 
 @RestController
-@RequestMapping("itmatch/insertData")
-public class InsertController {
+@RequestMapping("itmatch/inStorage")
+public class InStorageController {
 
     @Autowired
     private TestDataService testDataService;
 
     @Autowired
-    private InsertDataServiceImpl insertDataServiceImpl;
+    private InStorageBusinessServiceI inStorageBusinessServiceI ;
 
 
-    @RequestMapping(value = "/ruku", method = RequestMethod.POST)
-    public Object newruku(@RequestBody JSONObject requestbody){
-        return insertDataServiceImpl.insertData(resourcemanage);
+    @RequestMapping(value = "/inStorage", method = RequestMethod.POST)
+    public Object inStorage(@RequestBody TCenterResource tCenterResource){
+        return inStorageBusinessServiceI.inStorage(tCenterResource);
     }
 
 }
